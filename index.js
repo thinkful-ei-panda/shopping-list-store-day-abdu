@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable strict */
 const store = {
   items: [
     { id: cuid(), name: 'apples', checked: false },
