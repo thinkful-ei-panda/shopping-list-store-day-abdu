@@ -10,6 +10,7 @@ const store = {
   hideCheckedItems: false
 };
 
+
 const generateItemElement = function (item) {
   let itemTitle = `<span class='shopping-item shopping-item__checked'>${item.name}</span>`;
   if (!item.checked) {
@@ -28,9 +29,31 @@ const generateItemElement = function (item) {
         <button class='shopping-item-delete js-item-delete'>
           <span class='button-label'>delete</span>
         </button>
+        <button class='shopping-item-edit js-item-edit'>
+          <span class='button-label'>edit</span>
+        </button>
       </div>
     </li>`;
 };
+
+function generateEdit() {
+  return `<form id="js-shopping-list-form">
+  <label for="shopping-list-entry"></label>
+  <input type="text" name="shopping-list-entry" class="js-shopping-list-entry" placeholder="e.g., broccoli">
+  <button type="submit">Done</button>
+  </form>`;
+
+
+}
+
+
+function handleEdit() {
+  $('.js-shopping-list').on('click', '.js-item-edit', event => {
+    console.log($('.shopping-item').text());
+    this.$('.shopping-item').html(`${generateEdit()}`);
+  });
+}
+
 
 const generateShoppingItemsString = function (shoppingList) {
   const items = shoppingList.map((item) => generateItemElement(item));
@@ -162,6 +185,7 @@ const handleShoppingList = function () {
   handleItemCheckClicked();
   handleDeleteItemClicked();
   handleToggleFilterClick();
+  handleEdit();
 };
 
 // when the page loads, call `handleShoppingList`
